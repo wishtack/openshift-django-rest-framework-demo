@@ -4,28 +4,15 @@
 #
 # $Id: $
 #
-from collections import OrderedDict
 
 from rest_framework import serializers
-from rest_framework.generics import ListAPIView, CreateAPIView, RetrieveUpdateDestroyAPIView
-from rest_framework.pagination import LimitOffsetPagination
-from rest_framework.response import Response
+from rest_framework.generics import ListAPIView, CreateAPIView
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.viewsets import ViewSet
 
+from project.lib.paginator import Paginator
+from project.lib.token_authentication import TokenAuthentication
 from project.member.member import Member
-
-
-class Paginator(LimitOffsetPagination):
-
-    def get_paginated_response(self, data):
-        return Response(OrderedDict([
-            ('meta', {
-                'total_count': self.count,
-                'next': self.get_next_link(),
-                'previous': self.get_previous_link()
-            }),
-            ('data', data)
-        ]))
 
 
 class MemberSerializer(serializers.HyperlinkedModelSerializer):
@@ -36,6 +23,9 @@ class MemberSerializer(serializers.HyperlinkedModelSerializer):
 
 
 class MemberViewSet(CreateAPIView, ListAPIView, ViewSet):
+
+    authentication_classes = [TokenAuthentication]
+    permission_classes = [IsAuthenticated]
 
     queryset = Member.objects.all()
     serializer_class = MemberSerializer
