@@ -9,6 +9,7 @@ gunicorn = "==19.4.5"
 "psycopg2" = "==2.7.3.1"
 whitenoise = "==3.3.1"
 Django = "<1.12,>=1.11"
+djangorestframework = "*"
 
 [dev-packages]
 
