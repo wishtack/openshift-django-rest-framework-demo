@@ -10,9 +10,9 @@ from rest_framework.generics import ListAPIView, CreateAPIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.viewsets import ViewSet
 
-from ..lib.paginator import Paginator
-from ..lib.token_authentication import TokenAuthentication
-from ..member.member import Member
+from project.lib.paginator import Paginator
+from project.lib.token_authentication import TokenAuthentication
+from project.member.member import Member
 
 
 class MemberSerializer(serializers.HyperlinkedModelSerializer):
