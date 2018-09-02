@@ -10,8 +10,8 @@ from rest_framework.generics import ListAPIView, CreateAPIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.viewsets import ViewSet
 
-from project.lib.paginator import Paginator
-from project.lib.token_authentication import TokenAuthentication
+from project.common.paginator import Paginator
+from project.common.token_authentication import TokenAuthentication
 from project.member.member import Member
 
 
